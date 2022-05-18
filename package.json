@@ -1,0 +1,24 @@
+{
+  "name": "ed-analytics",
+  "version": "1.0.0",
+  "description": "Educational Analytics toolsets for optimised, interactive programming classroom environments.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shreyass-ranganatha/ed-analytics.js.git"
+  },
+  "keywords": [
+    "education",
+    "analytics",
+    "classroom"
+  ],
+  "author": "SkylarTown (skylartwn@gmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shreyass-ranganatha/ed-analytics.js/issues"
+  },
+  "homepage": "https://github.com/shreyass-ranganatha/ed-analytics.js#readme"
+}
