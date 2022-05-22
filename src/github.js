@@ -2,7 +2,6 @@
 
 import { URLNotFoundError, AuthError } from "./errors.js";
 import axios from "axios";
-import fs from "fs"
 import "dotenv/config"
 import process from "node:process"
 const CLASSROOM_ASSIGNMENT_REGEX = /^.*\/classrooms\/(.+)\/assignments\/([\w\-\d\.]+)/;
