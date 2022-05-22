@@ -1,8 +1,9 @@
 "use strict";
 
 import { URLNotFoundError, AuthError } from "./errors.js";
-
-
+import fetch from "node-fetch";
+import "dotenv/config"
+import process from "node:process"
 const CLASSROOM_ASSIGNMENT_REGEX = /^.*\/classrooms\/(.+)\/assignments\/([\w\-\d\.]+)/;
 
 
@@ -27,9 +28,22 @@ class ClassroomAssignment {
         this.assignment = regex[2];
     }
 
-    download_roster_grades() {
+    async download_roster_grades() {
         var url = `https://classroom.github.com/classrooms/${this.classroom}/assignments/${this.assignment}/download_grades`;
-
-        // ...
+        // Need to download the file poiinted at that url
+        try {
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "Authorization": `token ${this.oauth_token}`
+                }
+            })
+            console.log(await response.text());
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
 }
+
+new ClassroomAssignment(process.env.GITHUB_CLASSROOM_URL, process.env.GITHUB_AUTH_TOKEN).download_roster_grades()
