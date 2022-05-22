@@ -31,21 +31,18 @@ class ClassroomAssignment {
 
     async download_roster_grades() {
         var url = `https://classroom.github.com/classrooms/${this.classroom}/assignments/${this.assignment}/download_grades`;
+        let config = {
+            headers: {"Authorization": `token ${this.oauth_token}`}
+        }
         // Need to download the file poiinted at that url
         axios.defaults
         try {
-            const response = await axios.get(url);
-            fs.writeFile("response.html", response.data, err => {
-                console.log(err);
-            })
-            /*
-            Tried to see what is in the response,it is the github classroom login page
-            We need to authenticate ourself before being able to download that CSV file
-            */
+            const response = await axios.get(url, config);
+            console.log(response.data); // The data is still clsasroom.github.com login page
         } catch (error) {
             console.error(error);
         } 
     }
 }
 
-new ClassroomAssignment("https://classroom.github.com/classrooms/91765210-python100/assignments/python101/", process.env.GITHUB_API_KEY).download_roster_grades()
+new ClassroomAssignment(process.env.GITHUB_CLASSROOM_URL, process.env.GITHUB_AUTH_TOKEN).download_roster_grades()
